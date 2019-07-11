@@ -7,6 +7,7 @@ class UserController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      session[:user_id]=@user.id
       redirect_to @user, notice: 'Account created!'
     else
       render :new
@@ -23,7 +24,7 @@ class UserController < ApplicationController
       :last_name,
       :email,
       :password,
-      :confirm_password
+      :password_confirmation
     )
   end
 end

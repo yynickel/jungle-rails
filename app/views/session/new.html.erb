@@ -1,12 +1,12 @@
-<section class="user-new">
+<section class="session-new">
 
   <header class="page-header">
-    <h1>Registration</h1>
+    <h1>Login In</h1>
   </header>
 
   <div class="row">
     <div class="col-sm-6 col-sm-offset-1">
-      <%= form_for @user, url:{action:"create"} do |form| %>
+      <%= form_for @user, url:{action:"create"}, method: :post do |form| %>
 
         <% if form.object.errors.any? %>
           <div class="alert alert-danger">
@@ -19,16 +19,6 @@
           </div>
         <% end %>
 
-        <div class="form-group">
-          <%= form.label :first_name %>
-          <%= form.text_field :first_name, class: 'form-control' %>
-        </div>
-
-         <div class="form-group">
-          <%= form.label :last_name %>
-          <%= form.text_field :last_name, class: 'form-control' %>
-        </div>
-
          <div class="form-group">
           <%= form.label :email %>
           <%= form.email_field :email, class: 'form-control' %>
@@ -39,12 +29,7 @@
           <%= form.password_field :password, class: 'form-control' %>
         </div>
 
-         <div class="form-group">
-          <%= form.label :password_confirmation %>
-          <%= form.password_field :password_confirmation, class: 'form-control' %>
-        </div>
-
-        <%= form.submit 'Create Account', class: 'btn btn-primary' %>
+        <%= form.submit 'Login In', class: 'btn btn-primary' %>
       <% end %>
     </div>
   </div>
