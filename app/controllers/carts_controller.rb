@@ -1,6 +1,9 @@
 class CartsController < ApplicationController
 
   def show
+    if enhanced_cart.length==0
+      redirect_to :root, notice: 'Cart is empty!'
+    end
   end
 
   def add_item
