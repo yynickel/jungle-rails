@@ -132,5 +132,27 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+puts "Creating users"
+
+user1 = User.find_or_create_by!({
+  first_name: 'Test',
+  last_name: 'Doe',
+  email: 'a@a',
+  password_digest: '123'
+})
+
+puts "Creating reviews"
+
+user1.reviews.create!({
+  product_id: 1,
+  description: 'test review 1',
+  rating: 5
+})
+
+user1.reviews.create!({
+  product_id: 12,
+  description: 'quality shelf!',
+  rating:4
+})
 
 puts "DONE!"
