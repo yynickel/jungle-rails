@@ -22,6 +22,18 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
+          <dt>Reviews</dt>
+          <dd>
+            <% @product.reviews.each { |review| %>
+            <div>
+              Review Id: <%= review.id%> <br/>
+              Review user: <%= review.user_id%> <br/>
+              Review product: <%= review.product_id%> <br/>
+              Review description: <%= review.description%> <br/>
+              Review rating: <%= review.rating%> <br/>
+            </div>
+            <% } %>
+          </dd>
         </dl>
       </div>
     </div>
