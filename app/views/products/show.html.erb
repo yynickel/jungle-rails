@@ -37,11 +37,12 @@
         </dl>
 
         <div>
-          <%= form_for :review, url:product_reviews_url(:id) do |f| %>
+          <%= form_for :review, url:product_reviews_url(@product) do |f| %>
             <%= f.label :Description%>
             <%= f.text_area :description%>
             <%= f.label :Rating%>
             <%= f.select :rating, (1..5).to_a%>
+            <%= f.hidden_field :user_id, value: current_user.id %>
             <%= f.submit 'Submit'%>
           <% end %>
         </div>
