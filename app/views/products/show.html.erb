@@ -35,6 +35,17 @@
             <% } %>
           </dd>
         </dl>
+
+        <div>
+          <%= form_for :review, url:product_reviews_url(:id) do |f| %>
+            <%= f.label :Description%>
+            <%= f.text_area :description%>
+            <%= f.label :Rating%>
+            <%= f.select :rating, (1..5).to_a%>
+            <%= f.submit 'Submit'%>
+          <% end %>
+        </div>
+
       </div>
     </div>
 
