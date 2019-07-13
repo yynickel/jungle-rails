@@ -24,18 +24,22 @@
           <dd><%= @product.price %></dd>
           <dt>Reviews</dt>
           <dd>
-            <% @product.reviews.each { |review| %>
+            <% @product.reviews.reverse.each { |review| %>
             <div>
               Review Id: <%= review.id%> <br/>
-              Review user: <%= review.user_id%> <br/>
+              Created by: <%= "#{review.user.first_name} #{review.user.last_name}"%> <br/>
               Review product: <%= review.product_id%> <br/>
               Review description: <%= review.description%> <br/>
               Review rating: <%= review.rating%> <br/>
+              <% if current_user && current_user.id==review.user_id%>
+                <%=link_to 'Delete this review', product_review_url(@product, review), :method=>:delete, class: 'btn btn-danger' %>
+              <% end %>
             </div>
             <% } %>
           </dd>
         </dl>
 
+        <% if current_user %>
         <div>
           <%= form_for :review, url:product_reviews_url(@product) do |f| %>
             <%= f.label :Description%>
@@ -46,6 +50,7 @@
             <%= f.submit 'Submit'%>
           <% end %>
         </div>
+        <% end %>
 
       </div>
     </div>

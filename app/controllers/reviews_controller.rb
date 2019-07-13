@@ -10,6 +10,15 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def destroy
+    @review=Review.find params[:id]
+    if @review.destroy
+      redirect_to product_url(params[:product_id]), notice: 'Review deleted successfully!'
+    else
+      redirect_to :back, notice: 'something wrong when deleting the review'
+    end
+  end
+
   def review_params
     params.require(:review).permit(
       :description,
