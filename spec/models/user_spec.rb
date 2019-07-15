@@ -43,6 +43,17 @@ RSpec.describe User, type: :model do
       user=User.create first_name:'John', last_name:'Doe', email:'a@a',password:'123',password_confirmation:'123'
       expect(user).to be_valid
     end
-
+  end
+  describe '.authenticate_with_credentials' do
+    it 'should return user instance if the credentials are matching' do
+      user=User.create first_name:'John', last_name:'Doe', email:'a@a',password:'123',password_confirmation:'123'
+      result=User.authenticate_with_credentials('a@a',123)
+      expect(result).to eql(user)
+    end
+    it 'should return nil if the credentials are not matching' do
+      user=User.create first_name:'John', last_name:'Doe', email:'a@a',password:'123',password_confirmation:'123'
+      result=User.authenticate_with_credentials('a@a',1234)
+      expect(result).to be_nil
+    end
   end
 end
