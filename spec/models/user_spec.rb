@@ -34,7 +34,10 @@ RSpec.describe User, type: :model do
       user2=User.create first_name:'John', last_name:'Doe', email:'A@A',password:'123', password_confirmation:'123'
       expect(user2).to_not be_valid
     end
-
+    it 'should not create user with a password less than 3 characters' do
+      user=User.create first_name:'John', last_name:'Doe', email:'a@a',password:'12',password_confirmation:'12'
+      expect(user).to_not be_valid
+    end
     # positive case
     it 'should create user with proper attribute' do
       user=User.create first_name:'John', last_name:'Doe', email:'a@a',password:'123',password_confirmation:'123'
