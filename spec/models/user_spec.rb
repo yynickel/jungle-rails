@@ -55,5 +55,15 @@ RSpec.describe User, type: :model do
       result=User.authenticate_with_credentials('a@a',1234)
       expect(result).to be_nil
     end
+    it 'should return user instance if the credentials are matching but there are spaces before or after the email' do
+      user=User.create first_name:'John', last_name:'Doe', email:'a@a',password:'123',password_confirmation:'123'
+      result=User.authenticate_with_credentials('   a@a   ',123)
+      expect(result).to eql(user)
+    end
+    it 'should return user instance if the credentials are matching but there are wrong case for the email' do
+      user=User.create first_name:'John', last_name:'Doe', email:'eXample@domain.COM',password:'123',password_confirmation:'123'
+      result=User.authenticate_with_credentials('EXAMPLe@DOMAIN.CoM',123)
+      expect(result).to eql(user)
+    end
   end
 end
